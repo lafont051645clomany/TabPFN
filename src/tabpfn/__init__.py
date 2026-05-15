@@ -1,28 +1,23 @@
-#  Copyright (c) Prior Labs GmbH 2026.
+"""TabPFN: A transformer that solves small tabular classification problems in seconds.
 
-from importlib.metadata import version
+This package provides a scikit-learn compatible interface to TabPFN,
+a prior-fitted network for tabular data classification and regression.
+"""
 
-from tabpfn.classifier import TabPFNClassifier
-from tabpfn.errors import TabPFNCUDAOutOfMemoryError, TabPFNMPSOutOfMemoryError
-from tabpfn.misc.debug_versions import display_debug_info
-from tabpfn.model_loading import (
-    load_fitted_tabpfn_model,
-    save_fitted_tabpfn_model,
-)
-from tabpfn.regressor import TabPFNRegressor
+from __future__ import annotations
+
+import importlib.metadata
 
 try:
-    __version__ = version(__name__)
-except ImportError:
+    __version__ = importlib.metadata.version("tabpfn")
+except importlib.metadata.PackageNotFoundError:
     __version__ = "unknown"
 
+from tabpfn.classifier import TabPFNClassifier
+from tabpfn.regressor import TabPFNRegressor
+
 __all__ = [
-    "TabPFNCUDAOutOfMemoryError",
     "TabPFNClassifier",
-    "TabPFNMPSOutOfMemoryError",
     "TabPFNRegressor",
     "__version__",
-    "display_debug_info",
-    "load_fitted_tabpfn_model",
-    "save_fitted_tabpfn_model",
 ]
